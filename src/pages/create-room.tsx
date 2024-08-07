@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 export function CreateRoom(){
   const navigate = useNavigate()
 
-  function handleCreateRoom(){
+  function handleCreateRoom(data: FormData){
+    const theme = data.get('theme')?.toString()
     navigate('/room/5645dfdsf5sd4f5')
   }
 
