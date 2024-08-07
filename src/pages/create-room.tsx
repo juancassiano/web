@@ -1,7 +1,14 @@
 import { ArrowRight } from 'lucide-react'
 import amalogo from '../assets/ama-logo.svg'
+import { useNavigate } from 'react-router-dom'
 
 export function CreateRoom(){
+  const navigate = useNavigate()
+
+  function handleCreateRoom(){
+    navigate('/room/5645dfdsf5sd4f5')
+  }
+
   return (
     <main className='h-screen flex items-center justify-center px-4'>
       <div className='max-w-[450px] flex flex-col gap-6'>
@@ -10,7 +17,9 @@ export function CreateRoom(){
         Crie uma sala pública de AMA (Ask Me Anything) e priorize as perguntas mais importantes para a comunidade.
       </p>
 
-      <form className='flex items-center gap-2 bg-zinc-900 p-2 rounded-xl border border-zinc-800 ring-orange-400 ring-off-2 ring-offset-zinc-950 focus-within:ring-1'>
+      <form 
+      onSubmit={handleCreateRoom}
+      className='flex items-center gap-2 bg-zinc-900 p-2 rounded-xl border border-zinc-800 ring-orange-400 ring-off-2 ring-offset-zinc-950 focus-within:ring-1'>
         <input
           type='text'
           name= 'theme'
