@@ -14,7 +14,7 @@ export function Room(){
           Codigo da sala: <span className="text-zinc-300">{roomId}</span>
         </span>
 
-        <button type="submit" className=' bg-orange-800 text-zyn-300 px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-zync-700'>
+        <button type="submit" className=' ml-auto bg-orange-800 text-zyn-300 px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-zync-700'>
           Compartilhar
         
           <Share2 className='size-4' />
