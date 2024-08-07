@@ -18,7 +18,7 @@ export function CreateRoom(){
       </p>
 
       <form 
-      onSubmit={handleCreateRoom}
+      action={handleCreateRoom}
       className='flex items-center gap-2 bg-zinc-900 p-2 rounded-xl border border-zinc-800 ring-orange-400 ring-off-2 ring-offset-zinc-950 focus-within:ring-1'>
         <input
           type='text'
