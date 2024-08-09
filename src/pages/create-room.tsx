@@ -1,13 +1,24 @@
 import { ArrowRight } from 'lucide-react'
 import amalogo from '../assets/ama-logo.svg'
 import { useNavigate } from 'react-router-dom'
+import { createRoom } from '../http/create-room'
+import { toast } from 'sonner'
 
 export function CreateRoom(){
   const navigate = useNavigate()
 
-  function handleCreateRoom(data: FormData){
+  async function handleCreateRoom(data: FormData){
     const theme = data.get('theme')?.toString()
-    navigate('/room/5645dfdsf5sd4f5')
+
+    if (!theme){
+      return
+    }
+    try {
+      const { roomId } = await createRoom({ theme })
+      navigate(`/room/${roomId}`)
+    } catch {
+      toast.error('Falha ao criar sala')
+    }
   }
 
   return (
@@ -27,7 +38,7 @@ export function CreateRoom(){
           placeholder='Nome da sala'
           autoComplete='off'
           className='flex-1 text-sm mx-2 bg-transparent outline-none placeholder:text-zinc-500 text-zinc-100'
-
+          required
         />
 
         <button type="submit" className=' bg-orange-400 text-orange-950 px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-orange-500'>

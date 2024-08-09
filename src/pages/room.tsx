@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom"
 import amalogo from '../assets/ama-logo.svg'
-import { ArrowRight, Share2 } from "lucide-react"
+import { Share2 } from "lucide-react"
 import { toast} from 'sonner'
-import { Message } from "../components/message"
+import { Messages } from "../components/messages"
+import { Suspense } from "react"
+import { CreateMessageForm } from "../components/create-message-form"
 
 export function Room(){
   const { roomId } = useParams()
@@ -15,7 +17,7 @@ export function Room(){
     }else {
       navigator.clipboard.writeText(url)
 
-      toast.info('The room URL was copied to your clipboard')
+      toast.info('O link da sala foi copiado para a área de transferência')
     }
     
   }
@@ -43,26 +45,11 @@ export function Room(){
       </div>
 
 
-      <form 
-      className='flex items-center gap-2 bg-zinc-900 p-2 rounded-xl border border-zinc-800 ring-orange-400 ring-off-2 ring-offset-zinc-950 focus-within:ring-1'>
-        <input
-          type='text'
-          name= 'theme'
-          placeholder='Qual a sua pergunta?'
-          autoComplete='off'
-          className='flex-1 text-sm mx-2 bg-transparent outline-none placeholder:text-zinc-500 text-zinc-100'
-        />
-
-        <button type="submit" className=' bg-orange-400 text-orange-950 px-3 py-1.5 gap-1.5 flex items-center rounded-lg font-medium text-sm transition-colors hover:bg-orange-500'>
-          Criar pergunta 
-          <ArrowRight className='size-4' />
-        </button>
-      </form>
-
-      <ol className="list-decimal list-outside px-3 space-y-8 ">
-        <Message text="O que é golang?"  amountOfReactions={558} answered={true}/>
-        <Message text="Java é melhor que js?" amountOfReactions={1000}/>        
-      </ol>
+     <CreateMessageForm />
+     
+      <Suspense fallback>{<p>Carregando...</p>}
+        <Messages />
+      </Suspense>
     </div>
   )
 }
